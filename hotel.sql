@@ -15,7 +15,7 @@ create table instPhone (
   phone int,
 
   primary key (nfc_id, phone),
-  foreign key (nfc_id) references Customer
+  foreign key (nfc_id) references Customer(nfc_id)
 );
 
 create table instEmail (
@@ -23,7 +23,7 @@ create table instEmail (
   email varchar(31),
 
   primary key (nfc_id, email),
-  foreign key (nfc_id) references Customer
+  foreign key (nfc_id) references Customer(nfc_id)
 );
 
 create table Service (
@@ -50,8 +50,8 @@ create table Visits (
   exit_datetime datetime,
 
   primary key (nfc_id, arrival_datetime),
-  foreign key (nfc_id) references Customer,
-  foreign key (space_id) references Space
+  foreign key (nfc_id) references Customer(nfc_id),
+  foreign key (space_id) references Space(space_id)
 );
 
 create table Service_charge (
@@ -62,17 +62,17 @@ create table Service_charge (
   amount int,
 
   primary key (nfc_id, service_id, service_charge_datetime),
-  foreign key (nfc_id) references Customer,
-  foreign key (service_id) references Service
+  foreign key (nfc_id) references Customer(nfc_id),
+  foreign key (service_id) references Service(service_id)
 );
 
 create table registers (
   nfc_id int,
   service_id int,
-  registration_datetime datetime, --??
+  registration_datetime datetime, -- ??
 
   primary key (nfc_id, service_id),
-  foreign key (nfc_id) references Customer
+  foreign key (nfc_id) references Customer(nfc_id)
 );
 
 create table HasAccess (
@@ -82,7 +82,7 @@ create table HasAccess (
   space_id int,
 
   primary key (nfc_id,start_datetime),
-  foreign key (nfc_id) references Customer
+  foreign key (nfc_id) references Customer(nfc_id)
 );
 
 create table Offers(
@@ -90,6 +90,6 @@ create table Offers(
   service_id int,
 
   primary key (space_id, service_id),
-  foreign key (space_id) references Space,
-  foreign key (service_id) references Service
+  foreign key (space_id) references Space(space_id),
+  foreign key (service_id) references Service(service_id)
 );
