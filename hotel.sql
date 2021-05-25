@@ -28,7 +28,7 @@ create table instEmail (
 
 create table Service (
   service_id int auto_increment,
-  service_descritption varchar(100),
+  service_description varchar(100),
   needs_registation bit(1) not null, -- sigoura?
 
   primary key (service_id)
