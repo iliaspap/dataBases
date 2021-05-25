@@ -1,9 +1,6 @@
 import mysql.connector
 import csv
 
-def addears(item):
-    return "\'{}\'".format(item)
-
 mydb = mysql.connector.connect(
     user = "root",
     passwd = "",
