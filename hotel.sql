@@ -66,7 +66,7 @@ create table Service_charge (
   foreign key (service_id) references Service(service_id)
 );
 
-create table registers (
+create table Registers (
   nfc_id int,
   service_id int,
   registration_datetime datetime, -- ??
