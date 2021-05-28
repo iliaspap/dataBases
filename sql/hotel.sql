@@ -45,8 +45,8 @@ create table Space (
 
 create table Visits (
   nfc_id int,
-  arrival_datetime datetime,
   space_id int,
+  arrival_datetime datetime,
   exit_datetime datetime,
 
   primary key (nfc_id, arrival_datetime),
