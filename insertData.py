@@ -17,6 +17,6 @@ with open(f'./csv/{tablename}.csv', 'r') as csv_file:
     table = [line for line in csv_reader]
     for record in table:
         query = """INSERT INTO {} ({}) VALUES ({})""".format(tablename, ",".join(record.keys()), ",".join(f'"{word}"' for word in record.values()))
-        print(query)
+        # print(query)
         mycursor.execute(query)
         mydb.commit()

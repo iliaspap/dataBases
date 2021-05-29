@@ -12,7 +12,7 @@ create table Customer (
 
 create table instPhone (
   nfc_id int,
-  phone int,
+  phone varchar(20),
 
   primary key (nfc_id, phone),
   foreign key (nfc_id) references Customer(nfc_id)
