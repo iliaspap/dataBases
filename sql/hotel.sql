@@ -59,7 +59,7 @@ create table Service_charge (
   service_id int,
   service_charge_datetime datetime,
   description varchar(100),
-  amount int,
+  amount float,
 
   primary key (nfc_id, service_id, service_charge_datetime),
   foreign key (nfc_id) references Customer(nfc_id),
