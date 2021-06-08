@@ -1,5 +1,10 @@
+drop database if exists asdf_palace;
+create database asdf_palace;
+
+use asdf_palace;
+
 create table Customer (
-  nfc_id int auto_increment,
+  nfc_id int,
   name varchar(31) not null,
   surname varchar(31) not null,
   date_of_birth date,
@@ -27,20 +32,50 @@ create table instEmail (
 );
 
 create table Service (
-  service_id int auto_increment,
+  service_id int,
   service_description varchar(100),
-  needs_registration varchar(1) not null, -- sigoura?
+  needs_registration varchar(1) not null,
 
   primary key (service_id)
 );
 
 create table Space (
-  space_id int auto_increment,
+  space_id int,
   number_of_beds int,
   name varchar(31),
   description_location varchar(100),
 
   primary key (space_id)
+);
+
+create table Offers(
+  space_id int,
+  service_id int,
+
+  primary key (space_id, service_id),
+  foreign key (space_id) references Space(space_id),
+  foreign key (service_id) references Service(service_id)
+);
+
+create table Registers (
+  nfc_id int,
+  service_id int,
+  registration_datetime datetime,
+
+  primary key (nfc_id, service_id),
+  foreign key (nfc_id) references Customer(nfc_id),
+  foreign key (service_id) references Service(service_id)
+);
+
+create table HasAccess (
+  nfc_id int,
+  start_datetime datetime,
+  end_datetime datetime,
+  space_id int,
+
+  primary key (nfc_id, space_id, start_datetime),
+  foreign key (nfc_id) references Customer(nfc_id),
+  foreign key (space_id) references Space(space_id)
 );
 
 create table Visits (
@@ -61,35 +96,7 @@ create table Service_charge (
   description varchar(100),
   amount float,
 
-  primary key (nfc_id, service_id, service_charge_datetime),
+  primary key (nfc_id, service_charge_datetime),
   foreign key (nfc_id) references Customer(nfc_id),
-  foreign key (service_id) references Service(service_id)
-);
-
-create table Registers (
-  nfc_id int,
-  service_id int,
-  registration_datetime datetime, -- ??
-
-  primary key (nfc_id, service_id),
-  foreign key (nfc_id) references Customer(nfc_id)
-);
-
-create table HasAccess (
-  nfc_id int,
-  start_datetime datetime,
-  end_datetime datetime,
-  space_id int,
-
-  primary key (nfc_id,start_datetime),
-  foreign key (nfc_id) references Customer(nfc_id)
-);
-
-create table Offers(
-  space_id int,
-  service_id int,
-
-  primary key (space_id, service_id),
-  foreign key (space_id) references Space(space_id),
   foreign key (service_id) references Service(service_id)
 );
