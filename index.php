@@ -29,7 +29,18 @@
 				var x3 = document.getElementById("to_date").value;
 				var x4 = document.getElementById("from_amount").value;
 				var x5 = document.getElementById("to_amount").value;
-				document.getElementById("Output").innerHTML = "Poutses: " + x1 + x2 + x3 + x4 + x5;
+
+				// if (x2 < "2021-01-01" || x2 > "2021-12-31") {
+				// 	document.getElementById("Output").innerHTML = "Invalid or incomplete date";
+				// }
+
+				const xhttp = new XMLHttpRequest();
+				xhttp.onload = function() {
+					document.getElementById("Output").innerHTML = this.responseText;
+				}
+
+				xhttp.open("GET", "getChargeInfo.php?q="+x2);
+				xhttp.send();
 			}
 		</script>
 
@@ -40,11 +51,11 @@
 			<label for="choose_service">Service Name</label>
 			<select id = "choose_service" name = "Service Type" onchange="myFunction()">
 				<option value = "All" selected>All</option>
-				<option value = "Bar">Bar</option>
+				<option value = "Drinks at the bar">Bar</option>
 				<option value = "Gym">Gym</option>
 				<option value = "Hairdresser">Hairdresser</option>
 				<option value = "Meeting Room">Meeting Room</option>
-				<option value = "Restaurant">Restaurant</option>
+				<option value = "Food and drinks at the restaurant">Restaurant</option>
 				<option value = "Sauna">Sauna</option>
 			</select>
 
@@ -64,48 +75,5 @@
 
 		<p id = "Output"></p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		<!-- <table>
-			<tr>
-				<th>nfc_id</th>
-				<th>name</th>
-				<th>surname</th>
-				<th>date_of_birth</th>
-				<th>id_document_number</th>
-				<th>id_document_type</th>
-				<th>id_document_authority</th>
-			</tr> -->
-			<!-- <?php
-			// $sql = "SELECT * FROM Customer";
-			// $result = $conn-> query($sql);
-			// // if ($result === TRUE) {
-			// //   echo "Database created successfully";
-			// // } else {
-			// //   echo "Error creating database: " . $conn->errno;
-			// // }
-			// if($result->num_rows > 0){
-			// 	while($row = $result->fetch_assoc()){
-			// 		echo "<tr><td>".$row["nfc_id"]."</td><td>".$row["name"]."</td><td>".$row["surname"]."</td><td>".$row["date_of_birth"]."</td><td>".$row["id_document_number"]."</td><td>".$row["id_document_type"]."</td><td>".$row["id_document_authority"]."</td><tr>";
-			// 	}
-			// 	echo "</table>";
-			// }
-			// else{
-			// 	$conn->close();
-			// }
-			?> -->
-		<!-- </table> -->
 	</body>
 </html>

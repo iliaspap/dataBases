@@ -1,4 +1,5 @@
 -- question 7
+-- change attribute names?
 create view service_usage as
 select s.service_description, c.surname, c.name, sc.service_charge_datetime, sc.description, sc.amount
 from Service_charge as sc
