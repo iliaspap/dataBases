@@ -11,24 +11,28 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor()
 
 # Create Database
+print("Creating database...", end="", sep="")
 script = open("./sql/hotel.sql")
-sql_commands = script.read().replace(('\n'), '').split(';')[:-1]
+sql_commands = script.read().split(';')[:-1]
 for c in sql_commands:
     mycursor.execute(c)
+print("Done")
 
 # Create Triggers
+print("Create triggers...", end="", sep="");
 script = open("./sql/triggers.sql")
-sql_commands = script.read().replace(('\n'), '').split(';')[:-1]
+sql_commands = script.read().split(';')[:-1]
 for c in sql_commands:
     mycursor.execute(c)
-
+print("Done")
 
 # Create Views
+print("Create views...", end="", sep="");
 script = open("./sql/views.sql")
-sql_commands = script.read().replace(('\n'), '').split(';')[:-1]
+sql_commands = script.read().split(';')[:-1]
 for c in sql_commands:
     mycursor.execute(c)
-
+print("Done")
 
 # Insert Data
 def insertTable(tablename):
@@ -44,6 +48,10 @@ def insertTable(tablename):
 for table in ["Customer", "instPhone", "instEmail", 
               "Service", "Space", "Offers", 
               "Registers", "Visits", "Service_charge"]:
-    print("Inserting table: ", table, "...", end="")
+    print("Inserting table: ", table, "...", end="", sep="")
     insertTable(table)
     print("Done")
+
+# Close connection
+mycursor.close()
+mydb.close()
