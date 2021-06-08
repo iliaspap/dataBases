@@ -3,15 +3,20 @@
 import mysql.connector
 import csv
 
+print("Getting things ready, please wait...")
+
+# Connecting to mysql
+print("Connecting to mysql...", end="")
 mydb = mysql.connector.connect(
         user     = "asdf_admin",
         passwd   = "databases2021",
         )
+print("Done")
 
 mycursor = mydb.cursor()
 
 # Create Database
-print("Creating database...", end="", sep="")
+print("Creating database...", end="")
 script = open("./sql/hotel.sql")
 sql_commands = script.read().split(';')[:-1]
 for c in sql_commands:
@@ -19,7 +24,7 @@ for c in sql_commands:
 print("Done")
 
 # Create Triggers
-print("Create triggers...", end="", sep="");
+print("Create triggers...", end="");
 script = open("./sql/triggers.sql")
 sql_commands = script.read().split(';')[:-1]
 for c in sql_commands:
@@ -27,7 +32,7 @@ for c in sql_commands:
 print("Done")
 
 # Create Views
-print("Create views...", end="", sep="");
+print("Create views...", end="");
 script = open("./sql/views.sql")
 sql_commands = script.read().split(';')[:-1]
 for c in sql_commands:
@@ -53,5 +58,9 @@ for table in ["Customer", "instPhone", "instEmail",
     print("Done")
 
 # Close connection
+print("Closing connection to mysql...", end="")
 mycursor.close()
 mydb.close()
+print("Done")
+
+print("Done!")
