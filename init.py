@@ -6,17 +6,29 @@ import csv
 mydb = mysql.connector.connect(
         user     = "asdf_admin",
         passwd   = "databases2021",
-        database = "asdf_palace"
         )
 
 mycursor = mydb.cursor()
 
-
 # Create Database
+script = open("./sql/hotel.sql")
+sql_commands = script.read().replace(('\n'), '').split(';')[:-1]
+for c in sql_commands:
+    mycursor.execute(c)
 
 # Create Triggers
+script = open("./sql/triggers.sql")
+sql_commands = script.read().replace(('\n'), '').split(';')[:-1]
+for c in sql_commands:
+    mycursor.execute(c)
+
 
 # Create Views
+script = open("./sql/views.sql")
+sql_commands = script.read().replace(('\n'), '').split(';')[:-1]
+for c in sql_commands:
+    mycursor.execute(c)
+
 
 # Insert Data
 def insertTable(tablename):
