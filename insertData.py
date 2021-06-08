@@ -1,10 +1,12 @@
+#!/usr/bin/env python
+
 import mysql.connector
 import csv
 
 mydb = mysql.connector.connect(
-    user = "root",
-    passwd = "",
-    database = "Hotel"
+    user = "asdf_admin",
+    passwd = "databases2021",
+    database = "asdf_palace"
 )
 
 mycursor = mydb.cursor()
