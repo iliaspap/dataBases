@@ -15,28 +15,25 @@ print("Done")
 
 mycursor = mydb.cursor()
 
+def execute_script(file_name):
+    script = open(file_name)
+    sql_commands = script.read().split(';')[:-1]
+    for c in sql_commands:
+        mycursor.execute(c)
+
 # Create Database
 print("Creating database...", end="")
-script = open("./sql/hotel.sql")
-sql_commands = script.read().split(';')[:-1]
-for c in sql_commands:
-    mycursor.execute(c)
+execute_script("./sql/hotel.sql")
 print("Done")
 
 # Create Triggers
-print("Create triggers...", end="");
-script = open("./sql/triggers.sql")
-sql_commands = script.read().split(';')[:-1]
-for c in sql_commands:
-    mycursor.execute(c)
+print("Create triggers...", end="")
+execute_script("./sql/triggers.sql")
 print("Done")
 
 # Create Views
-print("Create views...", end="");
-script = open("./sql/views.sql")
-sql_commands = script.read().split(';')[:-1]
-for c in sql_commands:
-    mycursor.execute(c)
+print("Create views...", end="")
+execute_script("./sql/views.sql")
 print("Done")
 
 # Insert Data

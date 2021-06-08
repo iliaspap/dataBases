@@ -1,10 +1,5 @@
-<<<<<<< HEAD
--- question 7
--- change attribute names?
-=======
 drop view if exists service_usage;
 
->>>>>>> 8f0bdd903c24c9eeb6c23b464fa14386480716b5
 create view service_usage as
 select s.service_description, c.surname, c.name, sc.service_charge_datetime, sc.description, sc.amount
 from Service_charge as sc
