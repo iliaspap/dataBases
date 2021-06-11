@@ -1,6 +1,5 @@
 <?php
 
-
 $conn = new mysqli(
 	$servername = "localhost",
 	$username = "asdf_admin",
@@ -12,7 +11,6 @@ $sql = "SELECT s.space_id, s.name, s.description_location, v.arrival_datetime, v
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $_GET['q']);
 $stmt->execute();
-
 
 $result = $stmt->get_result();
 echo "Number of visits: ";

@@ -18,7 +18,6 @@ else {
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("sssdd", $_GET['q1'], $_GET['q2'], $_GET['q3'], $_GET['q4'], $_GET['q5']);
 }
-
 $stmt->execute();
 
 echo "<table>";
