@@ -1,27 +1,9 @@
 <!DOCTYPE html>
 
-<?php
-	// Create connection
-	$conn = new mysqli(
-		$servername = "localhost",
-		$username = "root",
-		$password = "",
-		$database =  "Hotel"
-	);
-
-	// Check connection
-	if ($conn->connect_error) {
-	  die("Connection failed: " . $conn->connect_error);
-	}
-?>
-
 <html>
 	<head>
-		<meta charset="utf-8">
-		<title>The Grand Budapest Hotel</title>
 
-		<!-- <button onclick="gotoCustomers()">Customers</button> -->
-		<a href="./index2.php">Service Usage</a>
+		<?php include "./navigation.php" ?>
 
 		<script type='text/javascript'>
 
@@ -39,7 +21,7 @@
 
 				if (document.getElementById("from_date").value != "") {
 					q2 = document.getElementById("from_date").value;
-					if(q2 < "1000-01-01" || q2>"10000-01-01") {
+					if(q2 < "1000-01-01" ){//|| q2>"10000-01-01") {
 						document.getElementById("Output").innerHTML = "Invalid date, try a year after 1000 and before 10000";
 						return
 					}
@@ -47,7 +29,7 @@
 				}
 				if (document.getElementById("to_date").value != "") {
 					q3 = document.getElementById("to_date").value;
-					if(q3 < "1000-01-01" || q2> "10000-01-01") {
+					if(q3 < "1000-01-01" ){//|| q3> "10000-01-01") {
 						document.getElementById("Output").innerHTML = "Invalid date, try something after 1000 and before 10000";
 						return
 					}
