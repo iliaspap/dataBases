@@ -7,7 +7,7 @@
 
 		<script type='text/javascript'>
 
-			function askCustomerVisits()
+			function askInfected()
 			{
 				console.log("mphke sthn synarthsh");
 				var q = document.getElementById("nfc_id").value;
@@ -21,7 +21,7 @@
 					document.getElementById("Output").innerHTML = this.responseText;
 				}
 
-				xhttp.open("GET", "getCustomerVisits.php?q="+q);
+				xhttp.open("GET", "getInfectedInfo.php?q="+q);
 				xhttp.send();
 			}
 
@@ -32,8 +32,8 @@
 	<body>
 
 		<form>
-			<label for="NFC_ID">Choose Customer NFC_ID</label>
-			<input type="number" id="nfc_id" name="NFC_ID" onchange="askCustomerVisits()">
+			<label for="NFC_ID">Choose Infected Customer's NFC_ID</label>
+			<input type="number" id="nfc_id" name="NFC_ID" onchange="askInfected()">
 		</form>
 
 		<p id="Output"></p>
