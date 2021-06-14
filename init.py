@@ -8,8 +8,8 @@ print("Getting things ready, please wait...")
 # Connecting to mysql
 print("Connecting to mysql...", end="")
 mydb = mysql.connector.connect(
-        user     = "asdf_admin",
-        passwd   = "databases2021",
+        user     = "root",
+        passwd   = "",
         )
 print("Done")
 
@@ -46,9 +46,9 @@ def insertTable(tablename):
             query = """INSERT INTO {} ({}) VALUES ({})""".format(tablename, ",".join(record.keys()), ",".join(f'"{word}"' for word in record.values()))
             mycursor.execute(query)
             mydb.commit()
-            
-for table in ["Customer", "instPhone", "instEmail", 
-              "Service", "Space", "Offers", 
+
+for table in ["Customer", "instPhone", "instEmail",
+              "Service", "Space", "Offers",
               "Registers", "Visits", "Service_charge"]:
     print("Inserting table: ", table, "...", end="", sep="")
     insertTable(table)

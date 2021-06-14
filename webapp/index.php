@@ -2,7 +2,6 @@
 
 <html>
 	<head>
-
 		<?php include "./navigation.php" ?>
 
 		<script type='text/javascript'>
