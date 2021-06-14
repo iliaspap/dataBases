@@ -31,7 +31,7 @@
 
 	<body>
 
-		<form>
+		<form onSubmit="return false;">
 			<label for="NFC_ID">Choose Infected Customer's NFC_ID</label>
 			<input type="number" id="nfc_id" name="NFC_ID" onchange="askInfected()">
 		</form>
