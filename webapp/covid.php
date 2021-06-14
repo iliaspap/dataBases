@@ -29,7 +29,7 @@
 
 	</head>
 
-	<body>
+    <body>
 
 		<form>
 			<label for="NFC_ID">Choose Customer NFC_ID</label>

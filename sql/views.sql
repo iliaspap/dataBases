@@ -10,11 +10,13 @@ order by sc.service_charge_datetime desc;
 drop view if exists customer_data;
 
 create view customer_data as
-select c.nfc_id, c.surname, c.name, c.date_of_birth, c.id_document_number, c.id_document_type, c.id_document_authority, p.phone, e.email
+select c.nfc_id, c.surname, c.name, c.date_of_birth, c.id_document_number, c.id_document_type, c.id_document_authority, p1.phone as phone1, p2.phone as phone2, e1.email as email1, e2.email as email2
 from Customer as c
-left join instPhone as p on c.nfc_id = p.nfc_id
-left join instEmail as e on c.nfc_id = e.nfc_id
-order by c.nfc_id asc;
+left join instPhone as p1 on c.nfc_id = p1.nfc_id
+left join instPhone as p2 on c.nfc_id = p2.nfc_id and p1.phone <> p2.phone
+left join instEmail as e1 on c.nfc_id = e1.nfc_id 
+left join instEmail as e2 on c.nfc_id = e2.nfc_id and e1.email <> e2.email
+group by c.nfc_id;
 
 drop view if exists category_charges;
 
