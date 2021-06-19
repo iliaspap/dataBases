@@ -8,8 +8,8 @@ print("Getting things ready, please wait...")
 # Connecting to mysql
 print("Connecting to mysql...", end="")
 mydb = mysql.connector.connect(
-        user     = "root",
-        passwd   = "",
+        user     = "asdf_admin",
+        passwd   = "databases2021",
         )
 print("Done")
 
@@ -49,7 +49,7 @@ def insertTable(tablename):
 
 for table in ["Customer", "instPhone", "instEmail",
               "Service", "Space", "Offers",
-              "Registers", "Visits", "Service_charge"]:
+              "Registers", "HasAccess", "Visits", "Service_charge"]:
     print("Inserting table: ", table, "...", end="", sep="")
     insertTable(table)
     print("Done")
