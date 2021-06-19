@@ -13,7 +13,9 @@ drop trigger if exists endAccess;
 create trigger endAccess after delete on Registers
     for each row
     update HasAccess
-    set end_datetime = current_date
+    set end_datetime = now()
     where space_id in  (select distinct space_id 
                         from Offers 
                         where Offers.service_id = service_id);
+
+
