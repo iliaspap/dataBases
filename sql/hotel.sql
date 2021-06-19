@@ -21,6 +21,7 @@ create table instPhone (
 
   primary key (nfc_id, phone),
   foreign key (nfc_id) references Customer(nfc_id)
+      on delete cascade
 );
 
 create table instEmail (
@@ -29,6 +30,7 @@ create table instEmail (
 
   primary key (nfc_id, email),
   foreign key (nfc_id) references Customer(nfc_id)
+      on delete cascade
 );
 
 create table Service (
@@ -53,8 +55,10 @@ create table Offers(
   service_id int,
 
   primary key (space_id, service_id),
-  foreign key (space_id) references Space(space_id),
+  foreign key (space_id) references Space(space_id)
+      on delete cascade,
   foreign key (service_id) references Service(service_id)
+      on delete cascade
 );
 
 create table Registers (
@@ -63,8 +67,10 @@ create table Registers (
   registration_datetime datetime,
 
   primary key (nfc_id, service_id),
-  foreign key (nfc_id) references Customer(nfc_id),
+  foreign key (nfc_id) references Customer(nfc_id)
+      on delete cascade,
   foreign key (service_id) references Service(service_id)
+      on delete cascade
 );
 
 create table HasAccess (
