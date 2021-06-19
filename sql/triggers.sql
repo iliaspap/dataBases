@@ -7,3 +7,13 @@ create trigger grantAccess after insert on Registers
     from Registers as r, Offers as o
     where r.service_id = NEW.service_id and r.nfc_id = NEW.nfc_id 
         and r.service_id = o.service_id and NEW.service_id <> 7;
+
+drop trigger if exists endAccess;
+
+create trigger endAccess after delete on Registers
+    for each row
+    update HasAccess
+    set end_datetime = current_date
+    where space_id in  (select distinct space_id 
+                        from Offers 
+                        where Offers.service_id = service_id);
