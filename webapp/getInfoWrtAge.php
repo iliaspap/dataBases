@@ -34,7 +34,6 @@ if($q=='q1'){//The question was "What are the most visited spaces?"
   ORDER BY num DESC;";
 }
 if($q=='q2'){//The question was "What are the most frequently used services?"
-  echo "hi";
   $sql= "SELECT S.service_description, count(C.nfc_id) as num
   FROM Service as S
   JOIN Service_charge as Sc ON S.service_id = Sc.service_id
