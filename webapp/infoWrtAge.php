@@ -12,7 +12,6 @@
 				var q;//Question
 
         q = document.getElementById("select_question").value;
-        console.log(q);
 				age = document.getElementById("select_age").value;
 
 				const xhttp = new XMLHttpRequest();
