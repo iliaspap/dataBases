@@ -11,7 +11,8 @@ ORDER BY service_charge_datetime;
 SELECT * FROM category_charges
 
 --selects the visits of an infected customer (question 9)
-SELECT s.space_id, s.name, s.description_location, v.arrival_datetime, v.exit_datetime FROM Visits as v JOIN Space as s ON v.space_id = s.space_id WHERE v.nfc_id = ?
+SELECT s.space_id, s.name, s.description_location, v.arrival_datetime, v.exit_datetime
+FROM Visits as v JOIN Space as s ON v.space_id = s.space_id WHERE v.nfc_id = ?
 
 --finds the customers that might be infected by the infected customer (question 10)
 SELECT DISTINCT c.nfc_id, c.name, c.surname, c.date_of_birth, c.id_document_number, c.id_document_type, c.id_document_authority
