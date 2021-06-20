@@ -8,7 +8,8 @@ $conn = new mysqli(
 );
 /*get the parameters given by infoWrtAge.php*/
 $age = $_GET['age'];//age requested
-$q = $_GET['q'];//query made
+$q = $_GET['q'];//query
+$t= $_GET['t'];
 /*if statements to see what age was requested*/
 if($age=='Young'){
   $start=20;
@@ -22,23 +23,33 @@ if($age=='Old'){
   $start=61;
   $end=200;//big enough value to make sure that everyone older than 61 will be included so that every query will have the same format
 }
+
+/*if statements to see what time was requested*/
+if($t=='Month'){
+  $time='MONTH';
+}
+if($t=='Year'){
+  $time='YEAR';
+}
+
 /*if statements to see what query was requested*/
 if($q=='q1'){//The question was "What are the most visited spaces?"
   $sql= "SELECT S.name, count(V.space_id) as num
   FROM Space as S
   JOIN Visits as V ON V.space_id = S.space_id
   JOIN Customer as C ON V.nfc_id = C.nfc_id
-                      and V.arrival_datetime >= DATE_ADD(CURRENT_DATE, INTERVAL -1 MONTH)
+                      and V.arrival_datetime >= DATE_ADD(CURRENT_DATE, INTERVAL -1 ".$time.")
                       and FLOOR(DATEDIFF(CURRENT_DATE, C.date_of_birth)/365.25) BETWEEN ? AND ?
   GROUP BY V.space_id
   ORDER BY num DESC;";
+
 }
 if($q=='q2'){//The question was "What are the most frequently used services?"
   $sql= "SELECT S.service_description, count(C.nfc_id) as num
   FROM Service as S
   JOIN Service_charge as Sc ON S.service_id = Sc.service_id
   JOIN Customer as C ON C.nfc_id = Sc.nfc_id
-                       and Sc.service_charge_datetime >= DATE_ADD(CURRENT_DATE, INTERVAL -1 MONTH)
+                       and Sc.service_charge_datetime >= DATE_ADD(CURRENT_DATE, INTERVAL -1 ".$time.")
                        and FLOOR(DATEDIFF(CURRENT_DATE, C.date_of_birth)/365.25) BETWEEN ? AND ?
   GROUP BY S.service_description
   ORDER BY num DESC;";
@@ -48,13 +59,13 @@ if($q=='q3'){//The question was "What are the services used by the most customer
   FROM Service as S
   JOIN Service_charge as Sc ON S.service_id = Sc.service_id
   JOIN Customer as C ON C.nfc_id = Sc.nfc_id
+                       and Sc.service_charge_datetime >= DATE_ADD(CURRENT_DATE, INTERVAL -1 ".$time.")
                        and FLOOR(DATEDIFF(CURRENT_DATE, C.date_of_birth)/365.25) BETWEEN ? AND ?
-                       and Sc.service_charge_datetime >= DATE_ADD(CURRENT_DATE, INTERVAL -1 MONTH)
   GROUP BY S.service_description
   ORDER BY num DESC;";
 }
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ii", $start,$end);
+$stmt->bind_param("ii",$start,$end);
 $stmt->execute();
 $result = $stmt->get_result();
 if($q=='q1'){
