@@ -1,9 +1,9 @@
 --usage of all services with multiple criteria (question 7a)
-SELECT * FROM service_usage WHERE service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ? 
+SELECT * FROM service_usage WHERE service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ?
 ORDER BY service_charge_datetime;
 
 --usage of specified service with multiple criteria (question 7b)
-SELECT * FROM service_usage WHERE service_description = ? and service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ? 
+SELECT * FROM service_usage WHERE service_description = ? and service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ?
 ORDER BY service_charge_datetime;
 
 --charges grouped by category, selects the whole view (first part of question 8)
@@ -27,7 +27,7 @@ JOIN Customer as C ON V.nfc_id = C.nfc_id
 GROUP BY V.space_id
 ORDER BY num DESC;
 
--- most used services (question 12)
+-- most used services (question 11)
 SELECT S.service_description, count(C.nfc_id) as num
 FROM Service as S
 JOIN Service_charge as Sc ON S.service_id = Sc.service_id
@@ -37,7 +37,7 @@ JOIN Customer as C ON C.nfc_id = Sc.nfc_id
 GROUP BY S.service_description
 ORDER BY num DESC;
 
--- services used by most customers (question 13)
+-- services used by most customers (question 11)
 SELECT S.service_description, count(distinct C.nfc_id) as num
 FROM Service as S
 JOIN Service_charge as Sc ON S.service_id = Sc.service_id
