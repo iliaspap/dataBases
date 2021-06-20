@@ -28,7 +28,7 @@
 
 	</head>
 
-	<body onload= "get_result()">
+	<body onload = "get_result()">
 		<form>
 			<label for="Select age">Select age interval</label>
 			<select id = "select_age" name = "Age" onchange="get_result()">
