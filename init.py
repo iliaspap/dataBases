@@ -27,12 +27,12 @@ execute_script("./sql/hotel.sql")
 print("Done")
 
 # Create Triggers
-print("Create triggers...", end="")
+print("Creating triggers...", end="")
 execute_script("./sql/triggers.sql")
 print("Done")
 
 # Create Views
-print("Create views...", end="")
+print("Creating views...", end="")
 execute_script("./sql/views.sql")
 print("Done")
 
