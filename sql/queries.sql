@@ -17,7 +17,8 @@ FROM Visits as v JOIN Space as s ON v.space_id = s.space_id WHERE v.nfc_id = ?
 --finds the customers that might be infected by the infected customer (question 10)
 SELECT DISTINCT c.nfc_id, c.name, c.surname, c.date_of_birth, c.id_document_number, c.id_document_type, c.id_document_authority
        FROM Customer as c, Visits as v1, Visits as v2
-       WHERE v1.nfc_id= ? AND c.nfc_id=v2.nfc_id AND v1.nfc_id<>v2.nfc_id AND v1.space_id=v2.space_id AND ! ( v2.exit_datetime < v1.arrival_datetime OR v2.arrival_datetime > DATE_ADD(v1.exit_datetime, INTERVAL 1 HOUR) )
+       WHERE v1.nfc_id= ? AND c.nfc_id=v2.nfc_id AND v1.nfc_id<>v2.nfc_id AND v1.space_id=v2.space_id
+       AND ! ( v2.exit_datetime < v1.arrival_datetime OR v2.arrival_datetime > DATE_ADD(v1.exit_datetime, INTERVAL 1 HOUR) )
 
 -- most visited spaces (question 11)
 SELECT S.name, count(V.space_id) as num
