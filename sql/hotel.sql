@@ -86,7 +86,7 @@ create table HasAccess (
 
 create table Visits (
   nfc_id int,
-  space_id int,
+  space_id int not null,
   arrival_datetime datetime,
   exit_datetime datetime,
 
@@ -97,7 +97,7 @@ create table Visits (
 
 create table Service_charge (
   nfc_id int,
-  service_id int,
+  service_id int not null,
   service_charge_datetime datetime,
   description varchar(100),
   amount float,
