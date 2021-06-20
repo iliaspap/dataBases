@@ -70,8 +70,6 @@ if($q=='q1'){
   	}
   	echo "</table>";
   }
-
-
 }
 if($q=='q2'){
   echo "The most frequently used services are:";
@@ -86,7 +84,6 @@ if($q=='q2'){
     }
     echo "</table>";
   }
-
 }
 if($q=='q3'){
   echo "The services used by the most customers are:";
