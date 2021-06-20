@@ -40,29 +40,44 @@ $conn = new mysqli(
 		    echo "</table>";
 		}
 
-		echo "\n\n";
+    echo "<br>";
+    
+    $sql2 = "SELECT * FROM customer_data";
 
-		// echo "<table>";
-		// echo "<tr>";
-		// echo "<th>nfc id</th>";
-		// echo "<th>Surname</th>";
-		// echo "<th>Name</th>";
-		// echo "<th>Date of birth</th>";
-		// echo "<th>id document number</th>";
-		// echo "<th>amount</th>";
-		// echo "</tr>";
-		//
-		// $result = $stmt->get_result();
-		// echo "Number of transctions: " ;
-		// echo $result->num_rows;
-		//
-		// if($result->num_rows > 0){
-		//     while($row = $result->fetch_assoc()){
-		//         echo "<tr><td>".$row["service_description"]."</td><td>".$row["surname"]."</td><td>".$row["name"]."</td><td>".$row["service_charge_datetime"]."</td><td>".$row["description"]."</td><td>".$row["amount"]."</td></tr>";
-		//     }
-		//     echo "</table>";
-		// }
+    $stmt2 = $conn->prepare($sql2);
+    $stmt2->execute();
 
+		echo "<table>";
+		echo "<tr>";
+		echo "<th>nfc id</th>";
+		echo "<th>Surname</th>";
+		echo "<th>Name</th>";
+		echo "<th>Date of birth</th>";
+		echo "<th>id document number</th>";
+    echo "<th>id document type</th>";
+    echo "<th>id document authority</th>";
+    echo "<th>phone 1</th>";
+    echo "<th>phone 2</th>";
+    echo "<th>email 1</th>";
+    echo "<th>email 2</th>";
+		echo "</tr>";
+
+		$result2 = $stmt2->get_result();
+		echo "Number of customers " ;
+		echo $result2->num_rows;
+
+		if($result2->num_rows > 0){
+		    while($row = $result2->fetch_assoc()){
+		        echo "<tr><td>".$row["nfc_id"]."</td><td>".$row["surname"]."</td><td>".$row["name"]."</td><td>"
+            .$row["date_of_birth"]."</td><td>".$row["id_document_number"]."</td><td>".$row["id_document_authority"]."</td><td>".$row["id_document_type"]."</td><td>"
+            .$row["phone1"]."</td><td>".$row["phone2"]."</td><td>".$row["email1"]."</td><td>".$row["email2"]."</td></tr>";
+		    }
+		    echo "</table>";
+		}
+
+    $stmt->close();
+    $stmt2->close();
+    $conn->close();
 
 		 ?>
 	</body>
