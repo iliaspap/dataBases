@@ -3,7 +3,8 @@ SELECT * FROM service_usage WHERE service_charge_datetime >= ? and service_charg
 ORDER BY service_charge_datetime;
 
 --usage of specified service with multiple criteria (question 7b)
-SELECT * FROM service_usage WHERE service_description = ? and service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ?
+SELECT * FROM service_usage WHERE service_description = ? and service_charge_datetime >= ? and
+service_charge_datetime <= ? and amount >= ? and amount <= ?
 ORDER BY service_charge_datetime;
 
 --charges grouped by category, selects the whole view (first part of question 8)
