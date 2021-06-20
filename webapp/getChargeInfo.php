@@ -9,12 +9,16 @@ $conn = new mysqli(
 
 //** Change ii to dd when ready
 if ($_GET['q1'] == "All") {
-  $sql = "SELECT * FROM service_usage WHERE service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ?";
+  $sql = "SELECT * FROM service_usage
+          WHERE service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ?
+          ORDER BY service_charge_datetime";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("ssdd",$_GET['q2'], $_GET['q3'], $_GET['q4'], $_GET['q5']);
 }
 else {
-  $sql = "SELECT * FROM service_usage WHERE service_description = ? and service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ?";
+  $sql = "SELECT * FROM service_usage
+          WHERE service_description = ? and service_charge_datetime >= ? and service_charge_datetime <= ? and amount >= ? and amount <= ?
+          ORDER BY service_charge_datetime";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("sssdd", $_GET['q1'], $_GET['q2'], $_GET['q3'], $_GET['q4'], $_GET['q5']);
 }

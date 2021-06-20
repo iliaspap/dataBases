@@ -12,6 +12,7 @@ $conn = new mysqli(
 <html lang="en" dir="ltr">
 
 	<head>
+        <link rel="stylesheet" href="./css/main.css">
 		<meta charset="utf-8">
 		<?php include "./navigation.php"?>
 	</head>
@@ -23,7 +24,7 @@ $conn = new mysqli(
 		$stmt = $conn->prepare($sql);
 		$stmt->execute();
 
-
+        echo "<p>Service Revenue</p>";
 		echo "<table>";
 		echo "<tr>";
 		echo "<th>service_description</th>";
@@ -41,7 +42,7 @@ $conn = new mysqli(
 		}
 
     echo "<br>";
-    
+
     $sql2 = "SELECT * FROM customer_data";
 
     $stmt2 = $conn->prepare($sql2);
@@ -54,17 +55,16 @@ $conn = new mysqli(
 		echo "<th>Name</th>";
 		echo "<th>Date of birth</th>";
 		echo "<th>id document number</th>";
-    echo "<th>id document type</th>";
-    echo "<th>id document authority</th>";
-    echo "<th>phone 1</th>";
-    echo "<th>phone 2</th>";
-    echo "<th>email 1</th>";
-    echo "<th>email 2</th>";
+        echo "<th>id document type</th>";
+        echo "<th>id document authority</th>";
+        echo "<th>phone 1</th>";
+        echo "<th>phone 2</th>";
+        echo "<th>email 1</th>";
+        echo "<th>email 2</th>";
 		echo "</tr>";
 
 		$result2 = $stmt2->get_result();
-		echo "Number of customers " ;
-		echo $result2->num_rows;
+		echo "<p>Number of customers:".$result2->num_rows."</p>";
 
 		if($result2->num_rows > 0){
 		    while($row = $result2->fetch_assoc()){

@@ -2,8 +2,8 @@
 
 <html>
 	<head>
+		<link rel="stylesheet" href="./css/main.css">
 		<?php include "./navigation.php" ?>
-
 		<script type='text/javascript'>
 
 			function get_result()

@@ -29,7 +29,7 @@ echo "</tr>";
 
 if ($result->num_rows > 0) {
 	while ($row = $result->fetch_assoc()){
-		echo "<tr><td>".$row["nfc_id"]."</td><td> ".$row["name"]."</td><td> ".$row["surname"]."</td><td> ".$row["date_of_birth"]."</td><td> ".$row["id_document_number"]."</td><td>".$row["id_document_type"]."</td><td>".$row["id_document_authority"]."</td><td>";
+		echo "<tr><td>".$row["nfc_id"]."</td><td> ".$row["name"]."</td><td> ".$row["surname"]."</td><td> ".$row["date_of_birth"]."</td><td> ".$row["id_document_number"]."</td><td>".$row["id_document_type"]."</td><td>".$row["id_document_authority"]."</td></tr>";
 	}
 	echo "</table>";
 }

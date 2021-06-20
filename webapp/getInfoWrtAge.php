@@ -77,7 +77,7 @@ if($q=='q1'){
   echo "</tr>";
   if ($result->num_rows > 0) {
   	while ($row = $result->fetch_assoc()){
-  		echo "<tr><td>".$row["name"]."</td><td> ".$row["num"]."</td><td> ";
+  		echo "<tr><td>".$row["name"]."</td><td> ".$row["num"]."</td></tr>";
   	}
   	echo "</table>";
   }
@@ -91,7 +91,7 @@ if($q=='q2'){
   echo "</tr>";
   if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()){
-      echo "<tr><td>".$row["service_description"]."</td><td> ".$row["num"]."</td><td> ";
+      echo "<tr><td>".$row["service_description"]."</td><td> ".$row["num"]."</td></tr>";
     }
     echo "</table>";
   }
@@ -105,7 +105,7 @@ if($q=='q3'){
   echo "</tr>";
   if ($result->num_rows > 0) {
     	while ($row = $result->fetch_assoc()){
-    		echo "<tr><td>".$row["service_description"]."</td><td> ".$row["num"]."</td><td> ";
+    		echo "<tr><td>".$row["service_description"]."</td><td> ".$row["num"]."</td></tr>";
     	}
     	echo "</table>";
     }
