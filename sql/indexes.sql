@@ -7,5 +7,5 @@ on Service_charge (amount);
 create index idx_space_id
 on Visits (space_id);
 
-create index idx_space_id
+create index idx_service_id
 on Service_charge (service_id);
