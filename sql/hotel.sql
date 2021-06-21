@@ -21,8 +21,7 @@ create table instPhone (
 
   primary key (nfc_id, phone),
   foreign key (nfc_id) references Customer(nfc_id)
-      on delete cascade
-      on update cascade
+      on delete cascade on update cascade
 );
 
 create table instEmail (
@@ -101,7 +100,7 @@ create table Visits (
   exit_datetime datetime,
 
   primary key (nfc_id, arrival_datetime),
-  foreign key (nfc_id) references Customer(nfc_id),
+  foreign key (nfc_id) references Customer(nfc_id)
       on delete cascade
       on update cascade,
   foreign key (space_id) references Space(space_id)
@@ -117,7 +116,7 @@ create table Service_charge (
   amount float,
 
   primary key (nfc_id, service_charge_datetime),
-  foreign key (nfc_id) references Customer(nfc_id),
+  foreign key (nfc_id) references Customer(nfc_id)
       on delete cascade
       on update cascade,
   foreign key (service_id) references Service(service_id)
