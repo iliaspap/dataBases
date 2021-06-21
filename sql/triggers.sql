@@ -23,7 +23,16 @@ drop trigger if exists endAccess;
 create trigger endAccess after delete on Registers
     for each row
     update HasAccess
-    set end_datetime = now()
-    where space_id in (select distinct space_id 
-                       from Offers 
-                       where Offers.service_id = service_id);
+    set HasAccess.end_datetime = now()
+    where HasAccess.nfc_id = OLD.nfc_id 
+    and HasAccess.space_id in (select distinct Offers.space_id 
+                               from Offers 
+                               where Offers.service_id = OLD.service_id);
+
+drop trigger if exists endOffer;
+
+-- When a service is no longer offered, delete all its registrations.
+create trigger endOffer before delete on Offers
+    for each row
+    delete from Registers
+    where Registers.service_id = OLD.service_id;
