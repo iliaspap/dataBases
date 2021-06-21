@@ -20,7 +20,7 @@ drop trigger if exists endAccess;
 
 -- When a customer unregisters from a service remove access to all the spaces that offer it.
 -- To do this we set the end datetime of HasAccess to the datetime of unregistration (access ends).
-create trigger endAccess after delete on Registers
+create trigger endAccess before delete on Registers
     for each row
     update HasAccess
     set HasAccess.end_datetime = now()
