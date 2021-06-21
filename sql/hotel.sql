@@ -22,6 +22,7 @@ create table instPhone (
   primary key (nfc_id, phone),
   foreign key (nfc_id) references Customer(nfc_id)
       on delete cascade
+      on update cascade
 );
 
 create table instEmail (
@@ -31,6 +32,7 @@ create table instEmail (
   primary key (nfc_id, email),
   foreign key (nfc_id) references Customer(nfc_id)
       on delete cascade
+      on update cascade
 );
 
 create table Service (
@@ -56,9 +58,11 @@ create table Offers(
 
   primary key (space_id, service_id),
   foreign key (space_id) references Space(space_id)
-      on delete cascade,
+      on delete cascade
+      on update cascade,
   foreign key (service_id) references Service(service_id)
       on delete cascade
+      on update cascade
 );
 
 create table Registers (
@@ -68,9 +72,11 @@ create table Registers (
 
   primary key (nfc_id, service_id),
   foreign key (nfc_id) references Customer(nfc_id)
-      on delete cascade,
+      on delete cascade
+      on update cascade,
   foreign key (service_id) references Service(service_id)
       on delete cascade
+      on update cascade
 );
 
 create table HasAccess (
@@ -80,8 +86,12 @@ create table HasAccess (
   space_id int,
 
   primary key (nfc_id, space_id, start_datetime),
-  foreign key (nfc_id) references Customer(nfc_id),
+  foreign key (nfc_id) references Customer(nfc_id)
+      on delete cascade
+      on update cascade,
   foreign key (space_id) references Space(space_id)
+      on delete cascade
+      on update cascade
 );
 
 create table Visits (
@@ -92,7 +102,11 @@ create table Visits (
 
   primary key (nfc_id, arrival_datetime),
   foreign key (nfc_id) references Customer(nfc_id),
+      on delete cascade
+      on update cascade,
   foreign key (space_id) references Space(space_id)
+      on delete cascade
+      on update cascade
 );
 
 create table Service_charge (
@@ -104,5 +118,9 @@ create table Service_charge (
 
   primary key (nfc_id, service_charge_datetime),
   foreign key (nfc_id) references Customer(nfc_id),
+      on delete cascade
+      on update cascade,
   foreign key (service_id) references Service(service_id)
+      on delete cascade
+      on update cascade
 );
